@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_bulletinlist_ppomppu"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/post_img"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/post_bulletin_name"
+        android:layout_toRightOf="@id/post_img"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="ppompu"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:background="@drawable/png_post_bubble"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/post_img"
+        android:layout_alignStart="@+id/ppost_date"
+        android:id="@+id/post_content"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/post_contents"
+            android:text="content"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+           />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/post_img"
+        android:layout_marginTop="5dp"
+        android:id="@+id/ppost_date"
+        android:paddingLeft="10dp"
+        android:text="17년 08월 20일"
+        android:layout_below="@id/post_content" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="1dp"
+        android:id="@+id/bookmark_check"
+        android:src="@drawable/ic_post_bookmark"
+        android:layout_below="@id/post_content"
+        android:layout_alignEnd="@id/post_content"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_content"
+        android:layout_toLeftOf="@id/bookmark_check"
+        android:background="@drawable/ic_action_name"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:textSize="10sp"
+            android:textColor="@color/None"
+            android:id="@+id/post_comment"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:text="10"
+             />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

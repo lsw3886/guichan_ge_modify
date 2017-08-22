@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+
+    tools:context="lsw.guichange.Activity.CustomBulletinActivity">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/guichan"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/currentBulletinImage"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentBulletinNamebox"
+        android:layout_above="@+id/custom_cancel"
+        android:layout_centerHorizontal="true">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/material_text_title"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/currentBulletinName"
+            android:text="귀찮게 게시판"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:src="@mipmap/ic_custom_pen"
+            android:layout_alignTop="@+id/currentBulletinName"
+            android:layout_toEndOf="@+id/currentBulletinName" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/ic_custom_camera"
+        android:layout_above="@id/currentBulletinNamebox"
+        android:layout_alignEnd="@+id/currentBulletinImage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/material_text_button"
+        android:id="@+id/custom_save"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:textSize="@dimen/material_text_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/custom_cancel"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_toStartOf="@+id/custom_save" />
+
+</RelativeLayout>

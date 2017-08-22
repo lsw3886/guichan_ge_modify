@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Guichange.iml" filepath="$PROJECT_DIR$/Guichange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guichan_ge-5af136e89f9ba907b833e011d761f27d3c769387.iml" filepath="$PROJECT_DIR$/guichan_ge-5af136e89f9ba907b833e011d761f27d3c769387.iml" />
+    </modules>
+  </component>
+</project>

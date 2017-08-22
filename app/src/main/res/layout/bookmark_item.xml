@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recent_bulletin_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardUseCompatPadding="true"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/Bookmark_bulletin_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/Bookmark_bulletin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/Bookmark_bulletin_image"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Bookmark_bulletin_content"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Bookmark_bulletin_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/Bookmark_bulletin_image"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/Bookmark_bulletin_item_delete"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_recent_delete" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Bookmark_bulletin_name"
+            android:layout_toRightOf="@id/Bookmark_bulletin_content"
+            android:background="@drawable/ic_action_name"
+
+
+            >
+
+            <TextView
+                android:id="@+id/Bookmark_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:gravity="center"
+                android:text="10"
+                android:textAlignment="center"
+                android:textColor="@color/None"
+                android:textSize="10sp"
+
+                />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/Bookmark_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Bookmark_comment"
+            android:layout_toRightOf="@id/Bookmark_bulletin_content"
+            android:textSize="7sp"
+            android:visibility="gone"/>
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
