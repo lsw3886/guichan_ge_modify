@@ -52,16 +52,16 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/post_cached"
-        android:layout_below="@id/post_appbar"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:src="@mipmap/ic_post_cached"
-        />
+    <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:id="@+id/post_cached"-->
+        <!--android:layout_below="@id/post_appbar"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:src="@mipmap/ic_post_cached"-->
+        <!--/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,48 +73,48 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/post_recyclerview"
-            android:layout_weight="9"
+            android:layout_weight="10"
             >
 
         </android.support.v7.widget.RecyclerView>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#f0f0f0">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:id="@+id/fakeadd"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_post_fakeadd"/>
-            <RelativeLayout
-                android:background="@color/None"
-                android:layout_toRightOf="@id/fakeadd"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/hash"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_post_hash"/>
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_post_smile"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:layout_toLeftOf="@id/hash"/>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="#f0f0f0">-->
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:id="@+id/fakeadd"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/ic_post_fakeadd"/>-->
+            <!--<RelativeLayout-->
+                <!--android:background="@color/None"-->
+                <!--android:layout_toRightOf="@id/fakeadd"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<ImageView-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="8dp"-->
+                    <!--android:id="@+id/hash"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/ic_post_hash"/>-->
+                <!--<ImageView-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="25dp"-->
+                    <!--android:src="@drawable/ic_post_smile"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="8dp"-->
+                    <!--android:layout_toLeftOf="@id/hash"/>-->
 
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
 
     </LinearLayout>

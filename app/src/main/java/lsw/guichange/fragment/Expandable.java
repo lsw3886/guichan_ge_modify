@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -196,7 +197,7 @@ public class Expandable extends Fragment {
 
 
         AlertDialog alert = new AlertDialog.Builder(getActivity())
-                .setTitle("알림")
+                .setTitle("게시판 추가하기")
                 .setPositiveButton("전송", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 

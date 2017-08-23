@@ -31,15 +31,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApplicationController extends Application {
     public final static String TAG = "LSW";
-    public Bitmap bitmap;
     private static ApplicationController instance;
-    public ArrayList<Bulletin> job_bulletins;
-    public ArrayList<Bulletin> exam_bulletins;
-    public ArrayList<Bulletin> community_bulletins;
-    public ArrayList<Bulletin> shopping_bulletins;
-    public ArrayList<Category> categories;
-    public ArrayList<Post> Bookmarks;
-    ArrayList<RecentBulletin> choiced_bulletins;
+    public static ArrayList<Bulletin> job_bulletins;
+    public static ArrayList<Bulletin> exam_bulletins;
+    public static ArrayList<Bulletin> community_bulletins;
+    public static ArrayList<Bulletin> shopping_bulletins;
+    public static ArrayList<Category> categories;
+    public static ArrayList<Post> Bookmarks;
+    static ArrayList<RecentBulletin> choiced_bulletins;
     DBHelper dbHelper;
 
     @Override
@@ -329,7 +328,7 @@ public class ApplicationController extends Application {
 
 
             case "취업":
-                Bulletin specup = new Bulletin(R.drawable.ic_bulletinlist_ppomppu, category, "스펙업");
+                Bulletin specup = new Bulletin(R.drawable.specup_ic, category, "스펙업");
                 Bulletin chuicollege = new Bulletin(R.drawable.ic_bulletinlist_boost, category, "취업대학교");
 
 

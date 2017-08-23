@@ -28,6 +28,7 @@ import lsw.guichange.Adapter.RecyclerViewAdapter.PostAdapter;
 import lsw.guichange.Controller.ApplicationController;
 import lsw.guichange.Controller.NetworkService;
 import lsw.guichange.DB.DBHelper;
+import lsw.guichange.GCM.MyFirebaseInstanceIDService;
 import lsw.guichange.Interface.OnLoadMoreListener;
 import lsw.guichange.Item.Keyword;
 import lsw.guichange.Item.Post;
@@ -117,7 +118,7 @@ public class PostActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                     adapter.notifyDataSetChanged();
                     lm.scrollToPosition(adapter.getItemCount()-1);
-                    Toast.makeText(getApplicationContext(), "지난번에 여기까지 보셨어요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "서버에 연결되지 않았습니다.", Toast.LENGTH_SHORT).show();
                     Log.i(ApplicationController.TAG, "Status Code : " + StatusCode);
                 }
             }
@@ -139,12 +140,13 @@ public class PostActivity extends AppCompatActivity {
                 .setTitle("키워드 등록")
                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String keyword = keywordInput.getText().toString();
-                        addKeyword(keyword);
+                        if(FirebaseInstanceId.getInstance().getToken() != null) {
+                            String keyword = keywordInput.getText().toString();
+                            addKeyword(keyword);
+                        }else{
 
-
-
-
+                            Toast.makeText(PostActivity.this, "잠시 후 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .setNeutralButton("취소", new DialogInterface.OnClickListener() {
@@ -168,6 +170,30 @@ public class PostActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
 
                     Toast.makeText(PostActivity.this, "저장되었습니다.",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(PostActivity.this, "실패했습니다..",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+                Log.i(ApplicationController.TAG, "Fail Message : " + t.getMessage());
+            }
+        });
+    }
+
+    public void RemoveKeyword(String keyword){
+
+        Call<Void> versionCall = networkService.requestKeyword( FirebaseInstanceId.getInstance().getToken(),keyword, bulletinName);
+        versionCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()) {
+
+                    Toast.makeText(PostActivity.this, "해제되었습니다.",Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(PostActivity.this, "실패했습니다..",Toast.LENGTH_SHORT).show();

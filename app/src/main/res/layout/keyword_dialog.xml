@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/material_text_body2"
+        android:textAlignment="center"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/keyword_dialog_head"
+        android:text="알람받을 키워드를 입력해주세요"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="(한 게시판에 한 단어만 가능합니다)"
+        android:textAlignment="center"
+        android:textSize="@dimen/material_text_caption"
+        android:id="@+id/keyword_dialog_contents"
+        android:layout_below="@id/keyword_dialog_head"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:id="@+id/KeywordInput" />
-</LinearLayout>
+        android:layout_marginBottom="16dp"
+        android:id="@+id/KeywordInput"
+        android:layout_below="@id/keyword_dialog_contents"/>
+</RelativeLayout>

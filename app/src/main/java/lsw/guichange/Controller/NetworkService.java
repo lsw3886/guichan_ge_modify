@@ -40,6 +40,9 @@ public interface NetworkService {
     @GET("/keyword/{token}/{keyword}/{bulletinName}")
     Call<Void> requestKeyword(@Path("token") String token, @Path("keyword") String keyword,@Path("bulletinName")String bulletinName);
 
+    @GET("/Rkeyword/{token}/{keyword}/{bulletinName}")
+    Call<Void> RemoveRequestKeyword(@Path("token") String token, @Path("keyword") String keyword,@Path("bulletinName")String bulletinName);
+
     @GET("/categories/")
     Call<List<exItem>>get_category();
 
