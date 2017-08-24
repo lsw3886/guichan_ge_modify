@@ -44,21 +44,21 @@
         android:layout_marginRight="16dp"
         android:layout_height="wrap_content"
         android:inputType="textUri"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="16dp"
-        android:text="비밀번호"
-        />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:text="비밀번호"-->
+        <!--/>-->
 
-    <EditText
-        android:id="@+id/add_bulletin_password"
-        android:layout_width="fill_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"/>
+    <!--<EditText-->
+        <!--android:id="@+id/add_bulletin_password"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPassword"/>-->
 </LinearLayout>

@@ -122,7 +122,7 @@ public class PostActivity extends AppCompatActivity {
 
     public void receivePosts(){
 
-        Call<List<Post>> versionCall = networkService.get_find_post("ppompers");
+        Call<List<Post>> versionCall = networkService.get_find_post(bulletinName);
         versionCall.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {

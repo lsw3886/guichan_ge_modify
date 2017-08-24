@@ -192,7 +192,7 @@ public class Expandable extends Fragment {
         View _layout = _inflater.inflate(R.layout.add_bulletin_popup, null);
         final EditText inputBulletinName = (EditText)_layout.findViewById(R.id.add_bulletin_name);
         final EditText inputBulletinAddress = (EditText)_layout.findViewById(R.id.add_bulletin_address);
-        final EditText inputPassword = (EditText)_layout.findViewById(R.id.add_bulletin_password);
+//        final EditText inputPassword = (EditText)_layout.findViewById(R.id.add_bulletin_password);
 //        final ImageView addBulletinImg = (ImageView)_layout.findViewById(R.id.add_bulletin_img);
 
 
@@ -207,12 +207,12 @@ public class Expandable extends Fragment {
                             database = FirebaseDatabase.getInstance();
                             String token = FirebaseInstanceId.getInstance().getToken();
                             myRef = database.getReference("Bulletins");
-                            addBulletin addBulletin = new addBulletin(inputBulletinName.getText().toString(), inputBulletinAddress.getText().toString(), token, inputPassword.getText().toString());
+                            addBulletin addBulletin = new addBulletin(inputBulletinName.getText().toString(), inputBulletinAddress.getText().toString(), token, "NONE");
                             myRef.child(inputBulletinName.getText().toString()).setValue(addBulletin);
                             Toast.makeText(getActivity().getApplicationContext(), "전송성공!",Toast.LENGTH_SHORT).show();
                             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-                            db.execSQL("insert into RequestBulletin values("+"\""+inputBulletinName.getText().toString()+ "\","+ "\""+inputBulletinAddress.getText().toString()+"\","+"\""+ inputPassword.getText().toString()+"\", "+R.drawable.guichan+");");
+                            db.execSQL("insert into RequestBulletin values("+"\""+inputBulletinName.getText().toString()+ "\","+ "\""+inputBulletinAddress.getText().toString()+"\","+"\""+ "NONE"+"\", "+R.drawable.guichan+");");
                         }
 
 

@@ -25,7 +25,8 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,12 +38,16 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Activity.CategoryActivity" />
-        <activity android:name=".Activity.PostActivity" />
-        <activity android:name=".Activity.webview" />
+        <activity android:name=".Activity.CategoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PostActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.webview"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activity.CustomBulletinActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"
             android:label="게시판 정보수정"
+            android:screenOrientation="portrait"
            ></activity>
     </application>
     <service

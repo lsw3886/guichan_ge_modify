@@ -47,16 +47,16 @@ public class RecentAdapter  extends RecyclerView.Adapter<RecentAdapter.ViewHolde
     public void onBindViewHolder(ViewHolder viewHolder, final int i){
         viewHolder.bulletin_name.setText(choiced_bulletins.get(i).getBulletin_Name());
         viewHolder.bulletin_img.setImageResource(choiced_bulletins.get(i).getBulletin_Img());
-        viewHolder.bulletin_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                application.deleteChoiced_bulletins(choiced_bulletins.get(i).getBulletin_Name());
-                Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();
-                mCallback.Datachange();
-
-            }
-        });
+//        viewHolder.bulletin_delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                application.deleteChoiced_bulletins(choiced_bulletins.get(i).getBulletin_Name());
+//                Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+//                notifyDataSetChanged();
+//                mCallback.Datachange();
+//
+//            }
+//        });
     }
 
     @Override
@@ -91,7 +91,7 @@ public class RecentAdapter  extends RecyclerView.Adapter<RecentAdapter.ViewHolde
             bulletin_img  = (ImageView) itemView.findViewById(R.id.recent_bulletin_image);
             bulletin_name = (TextView) itemView.findViewById(R.id.recent_bulletin_name);
             bulletin_content = (TextView) itemView.findViewById(R.id.recent_bulletin_content);
-            bulletin_delete = (ImageView) itemView.findViewById(R.id.recent_bulletin_item_delete);
+//            bulletin_delete = (ImageView) itemView.findViewById(R.id.recent_bulletin_item_delete);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
