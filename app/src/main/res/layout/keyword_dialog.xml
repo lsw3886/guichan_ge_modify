@@ -28,6 +28,35 @@
         android:id="@+id/keyword_dialog_contents"
         android:layout_below="@id/keyword_dialog_head"
         />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/savedKeyword_Box"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="30dp"
+        android:layout_below="@id/keyword_dialog_contents">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="none"
+            android:layout_marginRight="5dp"
+            android:textAlignment="center"
+            android:textSize="@dimen/material_text_caption"
+            android:id="@+id/keyword_dialog_savedkeyword"
+            />
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_toRightOf="@id/keyword_dialog_savedkeyword"
+            android:id="@+id/delete_keyword"
+            android:src="@drawable/ic_recent_delete"/>
+    </RelativeLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,5 +64,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="16dp"
         android:id="@+id/KeywordInput"
-        android:layout_below="@id/keyword_dialog_contents"/>
+        android:layout_below="@id/savedKeyword_Box"
+
+        />
 </RelativeLayout>

@@ -13,32 +13,31 @@
         >
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/post_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:weightSum="1">
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/post_activity_title_img"
-                />
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:id="@+id/post_activity_title_img"-->
+                <!--/>-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/post_activity_title"
                     android:textSize="20sp"
                     android:textColor="@color/None"
-                    android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/post_activity_title_img"/>
+                    />
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"

@@ -2,6 +2,7 @@ package lsw.guichange.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -17,6 +18,7 @@ public class webview extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String address = extra.getString("address");
         WebView webView = (WebView) findViewById(R.id.webview);
+        webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient());
         WebSettings set = webView.getSettings();
         set.setJavaScriptEnabled(true);

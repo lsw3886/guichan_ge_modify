@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDataChang
         tabLayout.addTab(tabLayout.newTab().setText("나의 게시판"));
         tabLayout.addTab(tabLayout.newTab().setText("북마크"));
         tabLayout.addTab(tabLayout.newTab().setText("게시판 설정"));
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {  //SEND_SMS 권한이 없다면,
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 5);  //달라고 요청
-        }
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {  //SEND_SMS 권한이 없다면,
+//            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 5);  //달라고 요청
+//        }
         tabLayout.setTabTextColors(Color.WHITE, Color.rgb(255, 171, 0));
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);

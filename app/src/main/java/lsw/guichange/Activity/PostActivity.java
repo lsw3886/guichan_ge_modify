@@ -2,16 +2,20 @@ package lsw.guichange.Activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +67,22 @@ public class PostActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         bulletinName = extra.getString("BulletinName");
         bulletinImage = extra.getInt("BulletinImage");
+        Toolbar toolbar = (Toolbar)findViewById(R.id.post_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_post_left);
+
+
+
+
+
         TextView title_view = (TextView) findViewById(R.id.post_activity_title);
-        ImageView title_imageview = (ImageView) findViewById(R.id.post_activity_title_img);
+//        ImageView title_imageview = (ImageView) findViewById(R.id.post_activity_title_img);
         ImageView keyword_alarm = (ImageView) findViewById(R.id.keywordAlarm);
+
         keyword_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +91,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
         title_view.setText(bulletinName);
-        title_imageview.setImageResource(bulletinImage);
+//        title_imageview.setImageResource(bulletinImage);
         progressBar = (ProgressBar)findViewById(R.id.post_progressbar);
         recyclerView = (RecyclerView) findViewById(R.id.post_recyclerview);
          lm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -133,16 +152,45 @@ public class PostActivity extends AppCompatActivity {
     private void show_dialog() {
         LayoutInflater _inflater = LayoutInflater.from(this);
         View _layout = _inflater.inflate(R.layout.keyword_dialog, null);
+        final SharedPreferences savedKeywordPrf = getSharedPreferences(bulletinName, MODE_PRIVATE);
+        final String SavedKeyword = savedKeywordPrf.getString("keyword", "None");
         final EditText keywordInput = (EditText)_layout.findViewById(R.id.KeywordInput);
+        final ImageView deleteButton = (ImageView)_layout.findViewById(R.id.delete_keyword);
+        final TextView savedKeywordTextView = (TextView)_layout.findViewById(R.id.keyword_dialog_savedkeyword);
+        if (SavedKeyword.equals("None")){
+            savedKeywordTextView.setText("등록한 키워드가 존재하지 않습니다.");
+            deleteButton.setVisibility(View.INVISIBLE);
 
+        }else{
+            savedKeywordTextView.setText("등록된 키워드 : " + SavedKeyword);
+        }
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                RemoveKeyword("", SavedKeyword, 0);
+                savedKeywordTextView.setText("등록한 키워드가 존재하지 않습니다.");
+                deleteButton.setVisibility(View.INVISIBLE);
+            }
+        });
         AlertDialog alert = new AlertDialog.Builder(PostActivity.this)
                 .setTitle("키워드 등록")
                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if(FirebaseInstanceId.getInstance().getToken() != null) {
                             String keyword = keywordInput.getText().toString();
-                            addKeyword(keyword);
+                            if (SavedKeyword.equals("None")){
+                                addKeyword(keyword);
+                                deleteButton.setVisibility(View.VISIBLE);
+                            }else if(SavedKeyword.equals(keyword)){
+                                Toast.makeText(PostActivity.this, "이미 등록된 키워드입니다.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                SharedPreferences.Editor editor = savedKeywordPrf.edit();
+                                editor.remove(SavedKeyword);
+                                editor.commit();
+                                RemoveKeyword(keyword, SavedKeyword, 1);
+
+                            }
                         }else{
 
                             Toast.makeText(PostActivity.this, "잠시 후 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
@@ -161,14 +209,17 @@ public class PostActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public void addKeyword(String keyword){
+    public void addKeyword(final String keyword){
 
         Call<Void> versionCall = networkService.requestKeyword( FirebaseInstanceId.getInstance().getToken(),keyword, bulletinName);
         versionCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
-
+                    SharedPreferences preKeyword = getSharedPreferences(bulletinName, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preKeyword.edit();
+                    editor.putString("keyword", keyword);
+                    editor.commit();
                     Toast.makeText(PostActivity.this, "저장되었습니다.",Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -185,15 +236,24 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    public void RemoveKeyword(String keyword){
-
-        Call<Void> versionCall = networkService.requestKeyword( FirebaseInstanceId.getInstance().getToken(),keyword, bulletinName);
+    public void RemoveKeyword(String keyword, String Rkeyword, final int type){
+        final String Skeyword = keyword;
+        Call<Void> versionCall = networkService.RemoveRequestKeyword( FirebaseInstanceId.getInstance().getToken(),Rkeyword, bulletinName);
         versionCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
+                    if(type == 1) {
+                        Toast.makeText(PostActivity.this, "정상적으로 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+                        addKeyword(Skeyword);
+                    }else{
+                        SharedPreferences removePrefer = getSharedPreferences(bulletinName, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = removePrefer.edit();
+                        editor.clear();
+                        editor.commit();
+                        Toast.makeText(PostActivity.this, "정상적으로 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(PostActivity.this, "해제되었습니다.",Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(PostActivity.this, "실패했습니다..",Toast.LENGTH_SHORT).show();
@@ -210,6 +270,17 @@ public class PostActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 //    public ArrayList<Post> splitPosts(ArrayList<Post> posts){
 //        ArrayList<Post> returnPosts = new ArrayList<>();
 //        if(posts.size()<=20){
