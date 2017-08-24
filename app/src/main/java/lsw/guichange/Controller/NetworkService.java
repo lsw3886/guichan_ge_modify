@@ -31,8 +31,8 @@ public interface NetworkService {
     @GET("/ppompers/")
     Call<List<Post>> get_post();
 
-    @GET("/ppompers/{pk}/")
-    Call<Post> get_pk_post(@Path("post") int pk);
+    @GET("/pppompers/{post}/")
+    Call<List<Post>> get_pk_post(@Path("post") int post);
 
     @GET("/{pk}/")
     Call<List<Post>> get_find_post(@Path("pk") String pk);

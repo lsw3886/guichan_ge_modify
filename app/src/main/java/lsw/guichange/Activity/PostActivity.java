@@ -3,6 +3,7 @@ package lsw.guichange.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Handler;
@@ -63,7 +64,6 @@ public class PostActivity extends AppCompatActivity {
         application.buildNetworkService("5bc83664.ngrok.io");
         networkService = application.getNetworkService();
         Bulletin_posts = new ArrayList<>();
-        receivePosts();
         Bundle extra = getIntent().getExtras();
         bulletinName = extra.getString("BulletinName");
         bulletinImage = extra.getInt("BulletinImage");
@@ -75,7 +75,14 @@ public class PostActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_post_left);
 
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String findQuery = "select max(postnum) from " + bulletinName+";";
+        Cursor rs = db.query(bulletinName, new String [] {"MAX("+"postnum"+")"}, null, null, null, null, null);
+        rs.moveToFirst();
+        int lastPostNum = rs.getInt(0);
 
+        receivePosts();
 
 
 

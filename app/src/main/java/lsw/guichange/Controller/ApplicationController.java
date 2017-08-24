@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public class ApplicationController extends Application {
     }
 
     public void addPosts(String bulletinName, int bulletinImg, Post post){
-            SQLiteDatabase db2 = dbHelper.getReadableDatabase();
+               SQLiteDatabase db2 = dbHelper.getReadableDatabase();
                String findQuery = "select max(postnum) from " + bulletinName+";";
                 Cursor rs = db2.query(bulletinName, new String [] {"MAX("+"postnum"+")"}, null, null, null, null, null);
                 rs.moveToFirst();
@@ -125,6 +126,14 @@ public class ApplicationController extends Application {
                     db.execSQL(query);
                 }
     }
+//    public void addPosts(String bulletinName, int bulletinImg, Post post){
+//
+//            SQLiteDatabase db = dbHelper.getWritableDatabase();
+//            Post bpost = new Post(post.getLink(), post.getComment(), post.getTitle(), post.getPost_num(), bulletinImg, bulletinName, post.getDate());
+//            String query = "insert into " + bulletinName + " values(null" + ", " + "\"" + bpost.getLink() + "\"" + ", " + "\"" + bpost.getComment() + "\", " + bpost.getPost_num() + " ," + "\"" + bpost.getTitle() + "\", " + "\"" + bpost.getDate() + "\" , " + bpost.getBulletinImg() + ", " + "\"" + bpost.getBulletinTitle() + "\"" + ");";
+//            db.execSQL(query);
+//
+//    }
 
     public void removeBookmark(Post post){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
