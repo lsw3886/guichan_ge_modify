@@ -103,7 +103,7 @@ public class RecentFragment extends Fragment {
                 recyclerView.setAdapter(adapter);
             }else{
                 textview= (TextView) getView().findViewById(R.id.recent_none_item);
-                textview.setText("게시판 탭에서 소식받을 게시판을 추가해 주세요.");
+                textview.setText("게시판 설정 탭에서 소식받을 게시판을 추가해 주세요.");
 
             }
 

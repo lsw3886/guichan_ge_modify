@@ -36,7 +36,6 @@ import lsw.guichange.Controller.ApplicationController;
 import lsw.guichange.Controller.NetworkService;
 import lsw.guichange.DB.DBHelper;
 import lsw.guichange.GCM.MyFirebaseInstanceIDService;
-import lsw.guichange.Interface.OnLoadMoreListener;
 import lsw.guichange.Item.Keyword;
 import lsw.guichange.Item.Post;
 import lsw.guichange.R;
@@ -54,7 +53,7 @@ public class PostActivity extends AppCompatActivity {
     int bulletinImage;
     ProgressBar progressBar;
     LinearLayoutManager lm;
-
+    ArrayList<Post> addpost = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +81,6 @@ public class PostActivity extends AppCompatActivity {
         rs.moveToFirst();
         int lastPostNum = rs.getInt(0);
 
-        receivePosts();
 
 
 
@@ -106,15 +104,9 @@ public class PostActivity extends AppCompatActivity {
         this.adapter = new PostAdapter(this, bulletinImage, bulletinName , Bulletin_posts);
 
         recyclerView.setAdapter(adapter);
-//        ImageView responBtn = (ImageView)findViewById(R.id.post_cached);
-//        responBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                progressBar.setVisibility(View.VISIBLE);
-//                receivePosts();
-//
-//            }
-//        });
+        receivePosts();
+
+
 
 
     }
@@ -156,6 +148,37 @@ public class PostActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void AddToPostsHead(int postnum){
+        Call<List<Post>> versionCall = networkService.get_pk_post(postnum);
+        versionCall.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(response.isSuccessful()) {
+                    List<Post> posts = response.body();
+
+                    for(Post x : posts){
+                        Bulletin_posts.add(x);
+                    }
+                    Toast.makeText(getApplicationContext(),"갱신 완료", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    int StatusCode = response.code();
+                    Toast.makeText(getApplicationContext(), "서버에 연결되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    Log.i(ApplicationController.TAG, "Status Code : " + StatusCode);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+
+                Log.i(ApplicationController.TAG, "Fail Message : " + t.getMessage());
+            }
+        });
+
+    }
+
+
     private void show_dialog() {
         LayoutInflater _inflater = LayoutInflater.from(this);
         View _layout = _inflater.inflate(R.layout.keyword_dialog, null);

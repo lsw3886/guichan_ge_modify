@@ -36,8 +36,7 @@
                     android:id="@+id/post_activity_title"
                     android:textSize="20sp"
                     android:textColor="@color/None"
-                    android:layout_centerVertical="true"
-                    />
+                    android:layout_centerVertical="true"/>
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"

@@ -22,7 +22,6 @@ import java.util.List;
 import lsw.guichange.Activity.webview;
 import lsw.guichange.Controller.ApplicationController;
 import lsw.guichange.Controller.NetworkService;
-import lsw.guichange.Interface.OnLoadMoreListener;
 import lsw.guichange.Interface.OnPostItemClickListener;
 import lsw.guichange.Item.Category;
 import lsw.guichange.Item.Post;
@@ -42,12 +41,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> im
     public ArrayList<Post> posts;
     int bulletin_img;
     String title;
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
-    private int visibleThreshold = 5;
-    private int lastVisibleItem, totalItemCount;
-    private boolean loading;
-    private OnLoadMoreListener onLoadMoreListener;
+
+
 
     public PostAdapter(Context mContext, int img, String title, ArrayList<Post> posts) {
         this.mContext = mContext;
@@ -156,13 +151,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> im
 
     }
 
-    public void setLoaded() {
-        loading = false;
-    }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
-        this.onLoadMoreListener = onLoadMoreListener;
-    }
 
 
 
